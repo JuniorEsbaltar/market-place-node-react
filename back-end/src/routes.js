@@ -1,6 +1,11 @@
 const routes = require("express").Router();
+const { User } = require('./app/models')
 
-routes.use('/', (request, response) => {
-  response.json({message: 'Hello World'})
+const data = new Date
+
+User.create({
+  name: 'Júnior', 
+  phone: '62982364065', 
+  birth_date: data
 })
 module.exports = routes;
