@@ -2,22 +2,29 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('orders', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
+      order_number: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      phone: {
-        type: Sequelize.STRING,
+      client_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'clients', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
         allowNull: false
       },
-      birth_date: {
+      amoutPrice: {
+        type: Sequelize.DECIMAL,
+        allowNull: false
+      },
+      date_order: {
         type: Sequelize.DATE,
         allowNull: false
       },
@@ -33,6 +40,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users')
+    return queryInterface.dropTable('orders')
   }
 };

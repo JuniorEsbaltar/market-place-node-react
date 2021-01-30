@@ -1,11 +1,11 @@
-const routes = require("express").Router();
-const { User } = require('./app/models')
+const routes = require('express').Router();
+const UserController = require('./controllers/ClientController')
+const ProductController = require('./controllers/ProductController')
 
-const data = new Date
+routes.get('/clients', UserController.index)
+routes.post('/clients', UserController.create)
 
-User.create({
-  name: 'Júnior', 
-  phone: '62982364065', 
-  birth_date: data
-})
+routes.get('/products', ProductController.index)
+routes.post('/products', ProductController.create)
+
 module.exports = routes;

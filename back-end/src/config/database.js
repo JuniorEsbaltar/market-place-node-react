@@ -4,7 +4,7 @@ module.exports = {
   password: 'root',
   database: 'market_place',
   dialect: "postgres",
-  operatorsAliases: false,
+  operatorsAliases: 0,
   logging: false,
   define: {
     timestamps: true,
