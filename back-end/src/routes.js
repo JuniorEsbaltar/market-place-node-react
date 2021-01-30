@@ -9,9 +9,10 @@ routes.delete('/clients/:client_id', ClientController.delete)
 routes.put('/clients', ClientController.update)
 
 routes.get('/products', ProductController.index)
+routes.put('/products', ProductController.update)
 routes.post('/products', ProductController.create)
 
-routes.get('/orders/:client_id', OrderController.index)
+routes.get('/orders', OrderController.index)
 routes.post('/clients/:client_id/order', OrderController.create)
 
 

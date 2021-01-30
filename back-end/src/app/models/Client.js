@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Client.associate = models => {
     Client.hasMany(models.Order, {
+      foreignKey: 'client_id',
+      as: 'orders',
       onDelete: "cascade"
     })
   }

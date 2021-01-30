@@ -8,9 +8,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Order.associate = (models) => {
     Order.belongsTo(models.Client, {
-      foreignKey: {
-        allowNull: false
-      }
+      foreignKey: 'client_id',
+      as: 'clients'
     }),
      
     Order.belongsToMany(models.Product, {
