@@ -4,6 +4,15 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.DECIMAL,
     status: DataTypes.STRING
   })
+  
+  Product.associate = (models) => {
+    Product.belongsToMany(models.Order, {
+      through: 'orders_products', 
+      as: 'orders',
+      foreignKey: 'product_id', 
+    })
+  }
 
   return Product
 }
+

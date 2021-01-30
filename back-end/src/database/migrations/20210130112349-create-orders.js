@@ -15,12 +15,12 @@ module.exports = {
       },
       client_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: { model: 'clients', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        allowNull: false
       },
-      amoutPrice: {
+      amount_price: {
         type: Sequelize.DECIMAL,
         allowNull: false
       },
