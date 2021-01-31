@@ -24,7 +24,6 @@ export default function Product() {
         <td>{product.price}</td>
         <td className="options">
           <Switch status={product.status} />
-          <button onClick={()=> {console.log("hee")}}>X</button>
         </td>
 
       </tr>
@@ -34,6 +33,10 @@ export default function Product() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if(!name.trim() || !price.trim()) {
+      alert("Preencha os Campos")
+      return 0;
+    }
     const data = {
       name, 
       price, 
@@ -56,11 +59,13 @@ export default function Product() {
       <h3>Lista de Clientes</h3>
       <form onSubmit={handleSubmit} className="create-client">
         <fieldset>
+          <label> Nome: </label>
           <input 
             type="text" 
             value={name}
             onChange={e => setName(e.target.value) }
           />
+          <label> Valor: </label>
           <input 
             type="text" 
             value={price}

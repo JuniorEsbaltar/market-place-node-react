@@ -18,20 +18,7 @@ export default function Client() {
 
   useEffect(() =>{ getClients() },[])
 
-  const renderClients = (client) => {
-    return (
-      <tr key={client.id}>
-        <td>{client.name}</td>
-        <td>{client.phone}</td>
-        <td>{client.birth_date}</td>
-        <td className="options">
-          <Switch status={client.status} />
-          <button onClick={()=> {deleteUser(client.id)}}>X</button>
-        </td>
-
-      </tr>
-    )
-  }
+  
 
   const deleteUser = async (id) => {
     await api.delete(`clients/${id}`).then(a => {
@@ -41,6 +28,11 @@ export default function Client() {
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(!name.trim() || !phone.trim()|| !birth_date.trim()) {
+      alert("Preencha os Campos")
+      return 0;
+    }
 
     const data = {
       name, 
@@ -60,28 +52,49 @@ export default function Client() {
         alert('Tente novamente mais tarde..')
       }) 
   }
+
+  const renderClients = (client) => {
+    return (
+      <tr key={client.id}>
+        <td>{client.name}</td>
+        <td>{client.phone}</td>
+        <td>{client.birth_date}</td>
+        <td className="options">
+          <Switch status={client.status} />
+        </td>
+      </tr>
+    )
+  }
   return (
     <div className="section">
       
-      <h3>Lista de Clientes</h3>
+      <h3>Clientes</h3>
       <form onSubmit={handleSubmit} className="create-client">
         <fieldset>
+          <label> Nome do cliente:</label>
           <input 
             type="text" 
             value={name}
             onChange={e => setName(e.target.value) }
           />
+          <label> Telefone: </label>
           <input 
             type="text" 
             value={phone}
-            onChange={e => setPhone(e.target.value) }
+            onChange={e => setPhone(e.target.value.replace(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/g,'a')) }
           />      
+          <label> Data de aniversario: </label>
           <input 
             type="date" 
             value={birth_date}
             onChange={e => setBirthDate(e.target.value) }
           />
-        <button className="save" onClick={handleSubmit}>Salvar</button>
+          <button 
+            className="save" 
+            onClick={handleSubmit}
+          >
+            Salvar
+          </button>
         </fieldset>
       </form>
       <table>

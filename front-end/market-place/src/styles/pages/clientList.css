@@ -26,19 +26,14 @@ td {
   text-align: center;
 }
 
-.options {
-  
+input, label {
+  width: 60%;
+  margin: 3px auto;
 }
 
-.options button {
-  width: 30px;
-  background: red;
-  border: 0 ;
-  height: 34px;
-  border-radius: 50%;
-}
-
-.options button:focus {
-  border: 2px solid black;
-  outline: none;
+fieldset button {
+  background: green;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 10px;
 }

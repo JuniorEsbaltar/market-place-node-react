@@ -20,17 +20,9 @@ export default function Order() {
         <td>{order.date_order}</td>
         <td>{order.amount_price}</td>
         <td>{order.status}</td>
-
       </tr>
     )
   }
-
-  // const deleteUser = async (id) => {
-  //   await api.delete(`orders/${id}`).then(a => {
-  //     alert('Ordere deletado')
-  //     getOrders()
-  //   })
-  // }
 
   return (
     <div className="section">

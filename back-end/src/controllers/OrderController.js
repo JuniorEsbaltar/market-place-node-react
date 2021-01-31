@@ -1,6 +1,7 @@
 const db = require("../app/models")
 const {Product} = require("../app/models/")
 const order_view = require("../views/order_view")
+const order_products_view = require("../views/order_products_view")
 
 module.exports = {
 
@@ -8,6 +9,13 @@ module.exports = {
     const orders = await db.Order.findAll({include: {association: 'clients'}})
     
     return response.json(order_view.renderMany(orders))
+  },
+  async indexById(request, response) {
+    const { id } = request.params
+
+    const order = await db.Order.findByPk(id, {include: {association: 'products'}})
+    
+    return response.json(order_products_view.render(order))
   },
 
   async create(request, response) {

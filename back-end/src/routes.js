@@ -5,7 +5,6 @@ const OrderController = require('./controllers/OrderController')
 
 routes.get('/clients', ClientController.index)
 routes.post('/clients', ClientController.create)
-routes.delete('/clients/:client_id', ClientController.delete)
 routes.put('/clients', ClientController.update)
 
 routes.get('/products', ProductController.index)
@@ -14,6 +13,6 @@ routes.post('/products', ProductController.create)
 
 routes.get('/orders', OrderController.index)
 routes.post('/clients/:client_id/order', OrderController.create)
-
+routes.get('/orders/:id', OrderController.indexById)
 
 module.exports = routes;
