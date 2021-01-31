@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import api from '../../services/api'
 import '../../styles/pages/clientList.css'
-import Switch from '../../components/switch'
 
 
 export default function Order() {
@@ -15,13 +15,11 @@ export default function Order() {
   const renderOrders = (order) => {
     return (
       <tr key={order.id}>
-        <td>{order.name}</td>
-        <td>{order.phone}</td>
-        <td>{order.birth_date}</td>
-        <td className="options">
-          <Switch status={order.status} />
-          <button onClick={()=> {console.log("aa")}}>X</button>
-        </td>
+        <td>{order.order_number}</td>
+        <td>{order.client_name}</td>
+        <td>{order.date_order}</td>
+        <td>{order.amount_price}</td>
+        <td>{order.status}</td>
 
       </tr>
     )
@@ -36,7 +34,10 @@ export default function Order() {
 
   return (
     <div className="section">
-      <h3>Lista de Orders</h3>
+      <h3>Lista de Pedidos</h3>
+      <Link to="orders/create">
+          Realizar novo pedido
+      </Link>
       <table>
         <thead>
           <tr>

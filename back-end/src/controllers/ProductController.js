@@ -21,7 +21,6 @@ module.exports = {
   },
 
   async update(request, response) {
-
     const {id, name, phone, birth_date, status} = request.body
 
     await Product.update(
@@ -30,5 +29,4 @@ module.exports = {
 
     return response.status(200)
   }
-  
 }

@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     amount_price: DataTypes.DECIMAL,
     client_id: DataTypes.INTEGER,
     order_number: DataTypes.DECIMAL,
-    date_order: DataTypes.DATE
+    date_order: DataTypes.DATE,
+    status: DataTypes.STRING
   })
 
   Order.associate = (models) => {

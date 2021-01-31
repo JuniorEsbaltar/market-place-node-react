@@ -8,11 +8,15 @@ module.exports = {
   },
 
   async create(request, response) {
-    const {name, phone, birth_date, status} = request.body
+    try{
+      const {name, phone, birth_date} = request.body
+      const status = 'active'
+      const client = await Client.create({name, phone, birth_date, status})
+      return response.json(client)
+    }catch {
+      return response.status(500).json({error:'nao foi possivel cadastrar'})
+    }
     
-    const client = await Client.create({name, phone, birth_date, status})
-    
-    return response.json(client)
   },
 
   async delete(request, response) {

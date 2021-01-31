@@ -1,0 +1,26 @@
+fieldset {
+  display: flex;
+  width: 80%;
+  margin: 10px auto;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.options-card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+}
+
+.options-card select {
+  align-self: center;
+  width: 150px;
+  height: 30px; 
+}
+
+.doOrder {
+  background: green;
+  width: 30%;
+  color: white;
+  align-self: flex-end;
+}

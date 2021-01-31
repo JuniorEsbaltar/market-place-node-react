@@ -1,27 +1,29 @@
 const db = require("../app/models")
 const {Product} = require("../app/models/")
+const order_view = require("../views/order_view")
 
 module.exports = {
 
   async index(request, response) {
     const orders = await db.Order.findAll({include: {association: 'clients'}})
     
-    return response.json(orders)
+    return response.json(order_view.renderMany(orders))
   },
 
   async create(request, response) {
+    console.log("entrou")
     const { client_id } = request.params;
-    const { products} = request.body
-    
+    const { products } = request.body
+    const status = 'realizado'
     const client = await db.Client.findByPk(client_id)
     
     if(!client) {
-      return response.status(400).json({error: "Client not found"})
+      return response.status(400).json( {error: "Client not found"} )
     }
 
     const amount_price = await products
-      .reduce((accumullator, product) => { 
-        return accumullator + product.price
+      .reduce((accumullator, product) => {
+        return accumullator + Number(product.price)
       }, 0)
 
     const date_order = new Date()
@@ -31,7 +33,8 @@ module.exports = {
       amount_price, 
       order_number, 
       date_order,
-      client_id
+      client_id,
+      status
     })
 
     for(const i in products) {
