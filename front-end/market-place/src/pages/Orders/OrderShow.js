@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../../services/api'
-import '../../styles/pages/clientList.css'
+import '../../styles/pages/fieldTables.css'
 import '../../styles/pages/orderShow.css'
 
 
@@ -17,12 +17,12 @@ export default function OrderShow() {
 
   const renderProductsCard = (product) => {
     return (
-      <div key={product.id} className="card">
+      <div key={product?.id} className="card">
         <label>Nome</label>
         <input value={product?.name} disabled={true}></input>
 
         <label>Preco</label>
-        <input value={product?.price} disabled={true}></input>
+        <input value={`R$ ${product?.price}`} disabled={true}></input>
       </div>
     )
   }
@@ -36,7 +36,7 @@ export default function OrderShow() {
         <input value={order?.order_number} disabled={true}></input>
 
         <label>Valor:</label>
-        <input value={order?.amount_price} disabled={true}></input>
+        <input value={`R$ ${order?.amount_price}`} disabled={true}></input>
 
         <label>Data :</label>
         <input value={order?.date_order} disabled={true}></input>
@@ -44,11 +44,8 @@ export default function OrderShow() {
         <h3>Produtos:</h3>
         <div className="card-container">
           { order?.products.map(renderProductsCard) }
-
         </div>
       </div>
-        
-      <button> Cancelar pedido </button>
     </div>
   )
 }

@@ -20,7 +20,9 @@ fieldset {
 
 .doOrder {
   background: green;
-  width: 30%;
+  width: 20%;
   color: white;
   align-self: flex-end;
+  border: 2px solid black;
+  margin-right: 20px;
 }

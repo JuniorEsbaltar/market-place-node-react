@@ -4,11 +4,13 @@ const ProductController = require('./controllers/ProductController')
 const OrderController = require('./controllers/OrderController')
 
 routes.get('/clients', ClientController.index)
+routes.get('/clients/active', ClientController.show)
 routes.post('/clients', ClientController.create)
-routes.put('/clients', ClientController.update)
+routes.put('/clients/:id', ClientController.update)
 
 routes.get('/products', ProductController.index)
-routes.put('/products', ProductController.update)
+routes.get('/products/active', ProductController.show)
+routes.put('/products/:id', ProductController.update)
 routes.post('/products', ProductController.create)
 
 routes.get('/orders', OrderController.index)

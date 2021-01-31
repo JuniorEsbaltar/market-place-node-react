@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../services/api'
-import '../styles/pages/clientList.css'
+import '../styles/pages/fieldTables.css'
 import Switch from '../components/switch'
 
 
@@ -21,9 +21,9 @@ export default function Product() {
     return (
       <tr key={product.id}>
         <td>{product.name}</td>
-        <td>{product.price}</td>
+        <td>{`R$ ${product.price}`}</td>
         <td className="options">
-          <Switch status={product.status} />
+          <Switch person={product} route='products' />
         </td>
 
       </tr>

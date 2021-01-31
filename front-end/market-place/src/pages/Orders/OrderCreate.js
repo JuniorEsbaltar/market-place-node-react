@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../services/api'
 import '../../styles/pages/orderCreate.css'
+import { useHistory } from "react-router-dom";
 
 
 export default function OrderCreate() {
+  const history = useHistory();
+
   const [clients, setClients] = useState([])
   const [products, setProducts] = useState([])
   const [selectedProducts, setSelectedProducts] = useState([])
@@ -11,18 +14,23 @@ export default function OrderCreate() {
   const [amountPrice, setAmountPrice] = useState(0)
 
   useEffect(() =>{ 
-    api.get(`clients`).then(response => {
+    api.get(`clients/active`).then(response => {
       setClients(response.data)
     }) 
   },[])
 
   useEffect(() =>{ 
-    api.get(`products`).then(response => {
+    api.get(`products/active`).then(response => {
       setProducts(response.data)
     }) 
   },[])
 
   const sendProduct = () => {
+    if(!selectedProducts || !selectedClientId) {
+      alert("Selecione um cliente e ao menos um produto")
+      return 0;
+    }
+
     const data = {
       products: selectedProducts
     }
@@ -30,7 +38,8 @@ export default function OrderCreate() {
     api.post(`clients/${selectedClientId}/order`, data)
       .then(response => {
         console.log(response.data)
-      })
+        history.push('/pedidos')
+      }).catch(e => alert("Tente novamente mais tarde"))
   }
 
   const showOptions= (option) => {
@@ -73,16 +82,21 @@ export default function OrderCreate() {
   return (
     <div className="section">
       <h3>Novo Pedido</h3>
+      <button className="doOrder" onClick={sendProduct} >Relizar Pedido</button>
       <form className="create-order">
           <fieldset>
               <div className="options-card">
                 <label>Selecione um Cliente:</label>
-                <select onChange={(e)=>{setSelectedClientId(e.target.value)}} name="options">
+                <select 
+                  onChange={(e)=>{setSelectedClientId(e.target.value)}}
+                  name="options"
+                >
+                  <option value="">Selecione um cliente</option>
                   {clients?.map(showOptions)}
                 </select>
               </div>
+              
               <label>Selecione um o mais pedidos</label>
-              <a className="doOrder" onClick={sendProduct} >Relizar Pedido</a>
               <table>
                 <thead>
                   <tr>
@@ -104,7 +118,7 @@ export default function OrderCreate() {
               </table>   
           </fieldset>
       </form>
-      {/* <button onClick=>Teste</button> */}
+      
     </div>
   )
 }

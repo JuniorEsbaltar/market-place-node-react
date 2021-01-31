@@ -22,8 +22,9 @@
   margin-left: 20px;
   padding:3px 10px;
 }
+
 td {
-  text-align: center;
+  padding: 0 15px;
 }
 
 input, label {
@@ -36,4 +37,7 @@ fieldset button {
   width: 30%;
   margin: 0 auto;
   margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
 }

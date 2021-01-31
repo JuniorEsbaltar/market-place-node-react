@@ -1,10 +1,17 @@
 const { Client } = require('../app/models')
-
+const client_view = require('../views/client_view')
 module.exports = {
   async index(request, response) {
     const clients = await Client.findAll()
 
-    return response.json(clients)
+    return response.json(client_view.renderMany(clients))
+  },
+
+  async show(request, response) {
+    console.log("entrou")
+    const clients = await Client.findAll({where: {status: 'active'}})
+
+    return response.json(client_view.renderMany(clients))
   },
 
   async create(request, response) {
@@ -19,24 +26,16 @@ module.exports = {
     
   },
 
-  async delete(request, response) {
-    const {client_id} = await request.params
-
-    const a = await Client.destroy({
-      where: {id: client_id}
-    })
-
-    return response.json(a)
-  },
   async update(request, response) {
-    const {id, name, phone, birth_date, status} = request.body
+    const { id } = request.params
+    
+    const client = await Client.findByPk(id)
+    client.status = await client.status == 'active' ? 'disable' : 'active';
 
-    const updatedClient = await Client.update(
-      { name, phone, birth_date, status },
-      { where: { id: id } }
-      )
+    await Client.update(
+      {status: client.status},
+      { where: { id: id } })
 
-    return response.json(updatedClient)
+    return response.status(200)
   }
-
 }

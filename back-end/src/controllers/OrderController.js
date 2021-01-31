@@ -19,7 +19,6 @@ module.exports = {
   },
 
   async create(request, response) {
-    console.log("entrou")
     const { client_id } = request.params;
     const { products } = request.body
     const status = 'realizado'
@@ -34,11 +33,12 @@ module.exports = {
         return accumullator + Number(product.price)
       }, 0)
 
+    
     const date_order = new Date()
     const order_number = (date_order.getTime() + client_id)
 
     const order = await db.Order.create({
-      amount_price, 
+      amount_price: amount_price.toFixed(2), 
       order_number, 
       date_order,
       client_id,
@@ -51,15 +51,6 @@ module.exports = {
     }
         
     return response.json(order)
-  },
-
-  async delete(request, response) {
-    const {id} = await request.params
-
-    const a = await Client.destroy({
-    where: {id: id}
-    })
-
-    return response.json(a)
   }
+
 }

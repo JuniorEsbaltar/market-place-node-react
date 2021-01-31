@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../services/api'
-import '../styles/pages/clientList.css'
+import '../styles/pages/fieldTables.css'
 import Switch from '../components/switch'
 
 
@@ -18,14 +18,6 @@ export default function Client() {
 
   useEffect(() =>{ getClients() },[])
 
-  
-
-  const deleteUser = async (id) => {
-    await api.delete(`clients/${id}`).then(a => {
-      alert('Cliente deletado')
-      getClients()
-    })
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -37,8 +29,7 @@ export default function Client() {
     const data = {
       name, 
       phone, 
-      birth_date,
-      status: 'active'
+      birth_date
     }
 
     await api.post('clients', data)
@@ -60,7 +51,7 @@ export default function Client() {
         <td>{client.phone}</td>
         <td>{client.birth_date}</td>
         <td className="options">
-          <Switch status={client.status} />
+          <Switch person={client} route='clients' />
         </td>
       </tr>
     )
@@ -81,7 +72,7 @@ export default function Client() {
           <input 
             type="text" 
             value={phone}
-            onChange={e => setPhone(e.target.value.replace(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/g,'a')) }
+            onChange={e => setPhone(e.target.value) }
           />      
           <label> Data de aniversario: </label>
           <input 
