@@ -26,10 +26,11 @@ export default function OrderCreate() {
   },[])
 
   const sendProduct = () => {
-    if(!selectedProducts || !selectedClientId) {
+    if(selectedProducts.length == 0 || !selectedClientId) {
       alert("Selecione um cliente e ao menos um produto")
       return 0;
     }
+
 
     const data = {
       products: selectedProducts
