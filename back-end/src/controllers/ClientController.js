@@ -8,7 +8,6 @@ module.exports = {
   },
 
   async show(request, response) {
-    console.log("entrou")
     const clients = await Client.findAll({where: {status: 'active'}})
 
     return response.json(client_view.renderMany(clients))

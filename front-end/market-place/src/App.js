@@ -8,8 +8,7 @@ import OrderCreate from './pages/Orders/OrderCreate'
 import OrderShow from './pages/Orders/OrderShow'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
-const routes = [
-   {
+const routes = [{
      path: "/",
      exact: true,
      main: Home
@@ -31,7 +30,6 @@ const routes = [
       path: "/pedidos/novo", 
       main: OrderCreate
     },
-    ,
    {
       path: "/pedido/:id", 
       main: OrderShow

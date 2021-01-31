@@ -3,7 +3,7 @@ module.exports = {
     return {
       id: product.id,
       status: product.status,
-      price: product.price,
+      price: Number(product.price).toFixed(2),
       name: product.name,
     }
   },

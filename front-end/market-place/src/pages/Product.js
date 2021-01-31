@@ -67,7 +67,7 @@ export default function Product() {
           />
           <label> Valor: </label>
           <input 
-            type="text" 
+            type="number" 
             value={price}
             onChange={e => setPrice(e.target.value) }
           />      

@@ -1,16 +1,15 @@
 const { Product } = require('../app/models')
-
+const product_view = require('../views/product_view')
 module.exports = {
   async index(request, response) {
     const product = await Product.findAll()
-    console.log(product)
-    return response.json(product)
+    return response.json(product_view.renderMany(product))
   },
 
   async show(request, response) {
     const product = await Product.findAll({where: {status: 'active'}})
 
-    return response.json(product)
+    return response.json(product_view.renderMany(product))
   },
 
   async create(request, response) {
