@@ -31,14 +31,12 @@ export default function OrderCreate() {
       return 0;
     }
 
-
     const data = {
       products: selectedProducts
     }
-    console.log(selectedClientId)
+
     api.post(`clients/${selectedClientId}/order`, data)
       .then(response => {
-        console.log(response.data)
         history.push('/pedidos')
       }).catch(e => alert("Tente novamente mais tarde"))
   }
@@ -119,7 +117,6 @@ export default function OrderCreate() {
               </table>   
           </fieldset>
       </form>
-      
     </div>
   )
 }
