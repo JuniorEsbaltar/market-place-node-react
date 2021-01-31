@@ -1,0 +1,86 @@
+import React, { useEffect, useState } from 'react'
+import api from '../services/api'
+import '../styles/pages/clientList.css'
+import Switch from '../components/switch'
+
+
+export default function Product() {
+  const [products, setProducts] = useState([])
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+
+  const getProducts =() => {
+    api.get(`products`).then(response => {
+      setProducts(response.data)
+    })
+  }
+
+  useEffect(() =>{ getProducts() },[])
+
+  const renderProducts = (product) => {
+    return (
+      <tr key={product.id}>
+        <td>{product.name}</td>
+        <td>{product.price}</td>
+        <td className="options">
+          <Switch status={product.status} />
+          <button onClick={()=> {console.log("hee")}}>X</button>
+        </td>
+
+      </tr>
+    )
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const data = {
+      name, 
+      price, 
+      status: 'active'
+    }
+
+    await api.post('products', data)
+      .then(e => {
+        alert('Cadastro Ok!');
+        setName('')
+        setPrice('')
+        getProducts()
+      }).catch(e => {
+        alert('Tente novamente mais tarde..')
+      }) 
+  }
+  return (
+    <div className="section">
+      
+      <h3>Lista de Clientes</h3>
+      <form onSubmit={handleSubmit} className="create-client">
+        <fieldset>
+          <input 
+            type="text" 
+            value={name}
+            onChange={e => setName(e.target.value) }
+          />
+          <input 
+            type="text" 
+            value={price}
+            onChange={e => setPrice(e.target.value) }
+          />      
+          <button className="save" onClick={handleSubmit}>Salvar</button>
+        </fieldset>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products?.map(renderProducts)}
+        </tbody>
+      </table>    
+    </div>
+  )
+}

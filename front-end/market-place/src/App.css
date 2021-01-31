@@ -1,0 +1,62 @@
+body {
+  background: linear-gradient(329.54deg, #c6ebc9 0%, #70af85 100%);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 10vw 80vw 10vw;
+	grid-template-rows: 10vh 85vh 5vh;
+	grid-template-areas:
+		"nav nav nav"
+		"sidenav content content"
+		"sidenav content content"
+		;
+}
+
+header {
+  border-bottom: 2px solid black;
+  grid-area: nav;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+}
+
+aside {
+  border-right: 2px solid black;
+  border-top: 0;
+  grid-area: sidenav;
+
+  display: flex;
+  flex-direction: column;
+}
+
+aside p {
+  flex-wrap: wrap;
+  display: block;
+}
+
+main {
+  background: #c6ebc9;
+  grid-area: content;
+}
+
+main .content {
+  background: white;
+  width: 90%;
+  margin: 20px 20px;
+  min-width: 600px;
+  border: 1px solid black;
+}
+
+/* footer {
+  border-top: 2px solid black;
+  border-left: 0;
+  grid-area: footer;
+} */
+/* 
+footer p {
+  text-align: center;
+} */

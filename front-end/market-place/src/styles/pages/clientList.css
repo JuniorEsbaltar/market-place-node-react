@@ -1,0 +1,44 @@
+.section {
+  display: flex;
+  flex-direction: column;
+}
+.section h3 {
+  text-align: center;
+  margin: 10px 0;
+  border-bottom: 1px solid black;
+}
+
+.section table {
+  margin: 20px 40px;
+}
+
+.section table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.section .new {
+  background: rgb(103, 103, 238);
+  margin-left: 20px;
+  padding:3px 10px;
+}
+td {
+  text-align: center;
+}
+
+.options {
+  
+}
+
+.options button {
+  width: 30px;
+  background: red;
+  border: 0 ;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.options button:focus {
+  border: 2px solid black;
+  outline: none;
+}
