@@ -11,7 +11,6 @@ export default function OrderShow() {
 
   useEffect(() =>{ 
     api.get(`orders/${params.id}`).then(response => {
-      console.log(response.data)
       setOrder(response.data)
   })},[])
 
