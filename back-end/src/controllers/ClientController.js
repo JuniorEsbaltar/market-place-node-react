@@ -25,7 +25,7 @@ module.exports = {
       return response.json(client)
     }catch {
 
-      return response.status(500).json({error:'nao foi possivel cadastrar'})
+      return response.status(500).json({error:'unable to register'})
     }
     
   },
@@ -40,6 +40,6 @@ module.exports = {
       {status: client.status},
       { where: { id: id } })
 
-    return response.status(200)
+    return response.status(200).json({update: 'Status updated.'})
   }
 }
