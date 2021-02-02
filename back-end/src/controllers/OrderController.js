@@ -10,6 +10,7 @@ module.exports = {
     
     return response.json(order_view.renderMany(orders))
   },
+  
   async indexById(request, response) {
     const { id } = request.params
 
@@ -32,7 +33,6 @@ module.exports = {
       .reduce((accumullator, product) => {
         return accumullator + Number(product.price)
       }, 0)
-
     
     const date_order = new Date()
     const order_number = (date_order.getTime() + client_id)

@@ -25,7 +25,6 @@ export default function Product() {
         <td className="options">
           <Switch person={product} route='products' />
         </td>
-
       </tr>
     )
   }
@@ -37,15 +36,15 @@ export default function Product() {
       alert("Preencha os Campos")
       return 0;
     }
+
     const data = {
       name, 
-      price, 
-      status: 'active'
+      price
     }
 
     await api.post('products', data)
       .then(e => {
-        alert('Cadastro Ok!');
+        alert('Cadastrado com sucesso!');
         setName('')
         setPrice('')
         getProducts()
@@ -55,7 +54,6 @@ export default function Product() {
   }
   return (
     <div className="section">
-      
       <h3>Lista de Clientes</h3>
       <form onSubmit={handleSubmit} className="create-client">
         <fieldset>

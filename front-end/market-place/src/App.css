@@ -50,13 +50,3 @@ main .content {
   min-width: 600px;
   border: 1px solid black;
 }
-
-/* footer {
-  border-top: 2px solid black;
-  border-left: 0;
-  grid-area: footer;
-} */
-/* 
-footer p {
-  text-align: center;
-} */

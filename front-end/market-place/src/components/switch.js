@@ -4,10 +4,10 @@ import '../styles/components/switch.css'
 
 export default function Switch(props) {
   
-  const updateStatus =() => {
+  const updateStatus =(e) => {
     api.put(`${props.route}/${props.person.id}`).then(response => {
       console.log(response)
-    })
+    }).catch(e => alert('Erro ao alterar statu'))
   }
   
   return (
@@ -15,7 +15,7 @@ export default function Switch(props) {
       <input 
         type="checkbox"
         defaultChecked={ props.person?.status === 'active' ? true : false } 
-        onChange = {() =>{updateStatus()}}
+        onClick = {(e) =>{updateStatus(e)}}
       />
       <span className="slider round"></span>
     </label>

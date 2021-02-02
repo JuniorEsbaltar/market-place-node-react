@@ -18,6 +18,11 @@ export default function Client() {
 
   useEffect(() =>{ getClients() },[])
 
+  const cleanFields = () => {
+    setName('')
+    setBirthDate('')
+    setPhone('')
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -34,10 +39,8 @@ export default function Client() {
 
     await api.post('clients', data)
       .then(e => {
-        alert('Cadastro Ok!');
-        setName('')
-        setBirthDate('')
-        setPhone('')
+        alert('Cadastrado com sucesso!');
+        cleanFields()
         getClients()
       }).catch(e => {
         alert('Tente novamente mais tarde..')
@@ -56,9 +59,9 @@ export default function Client() {
       </tr>
     )
   }
+
   return (
-    <div className="section">
-      
+    <div className="section">  
       <h3>Clientes</h3>
       <form onSubmit={handleSubmit} className="create-client">
         <fieldset>
