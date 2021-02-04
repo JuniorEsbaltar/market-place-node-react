@@ -1,52 +1,50 @@
 body {
-  background: linear-gradient(329.54deg, #c6ebc9 0%, #70af85 100%);
+  background: #03506f
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 10vw 80vw 10vw;
-	grid-template-rows: 10vh 85vh 5vh;
-	grid-template-areas:
-		"nav nav nav"
-		"sidenav content content"
-		"sidenav content content"
-		;
-}
-
-header {
-  border-bottom: 2px solid black;
-  grid-area: nav;
-}
-
-h1 {
-  margin: 0 auto;
-  text-align: center;
-  padding-top: 10px;
-}
-
-aside {
-  border-right: 2px solid black;
-  border-top: 0;
-  grid-area: sidenav;
-
   display: flex;
   flex-direction: column;
 }
 
-aside p {
-  flex-wrap: wrap;
-  display: block;
+header {
+  border-bottom: 2px solid black;
+  display: flex;
+  background: #0a043c;
+  max-height: 60px;
 }
 
-main {
-  background: #c6ebc9;
-  grid-area: content;
+header h1 {
+  margin: auto auto;
+  text-align: center;
+  color: #ffe3de;
+}
+
+header .options {
+  display: flex;
+  margin-top: 20px;
+}
+
+header .options .link {
+  margin-right: 30px;
+  font-size: 20px;
+  color: #ffe3de;
+}
+
+header .icon-home {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+header .icon-home:active {
+  color: purple
 }
 
 main .content {
-  background: white;
+  background: rgba(163,221,203,0.4);
   width: 90%;
   margin: 20px 20px;
   min-width: 600px;
-  border: 1px solid black;
+  border: 2px solid black;
+  box-shadow: #0a043c;
 }

@@ -7,6 +7,12 @@ import Order from './pages/Orders/Order'
 import OrderCreate from './pages/Orders/OrderCreate'
 import OrderShow from './pages/Orders/OrderShow'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { 
+   FaHome, 
+   FaUserAlt, 
+   FaClipboardList,
+   FaClipboardCheck 
+} from 'react-icons/fa'
 
 const routes = [{
      path: "/",
@@ -41,27 +47,33 @@ function App() {
      <Router>
       <div className="container">
          <header>
+            <Link to="/" className="icon-home">
+               <FaHome size ={50}/>
+            </Link>
             <h1>Market Place</h1>
+            <div className="options">
+               <div className="link">
+                  <Link to="/clientes">
+                     <FaUserAlt/>Clientes
+                  </Link>
+               </div>
+               <div className="link">
+                  <Link to="/produtos">
+                     <FaClipboardList/>Produtos
+                  </Link>
+               </div>
+               <div className="link">
+                  <Link to="/pedidos">
+                     <FaClipboardCheck/>Pedidos
+                  </Link>
+               </div>
+               <div className="link">
+                  <Link to="/pedidos/novo">
+                     Novo pedido
+                  </Link>
+               </div>
+            </div>
          </header>
-         <aside>
-            <ul >
-               <li>
-                  <Link to="/">Home</Link>
-               </li>
-               <li>
-                  <Link to="/clientes">Clientes</Link>
-               </li>
-               <li>
-                  <Link to="/produtos">Produtos</Link>
-               </li>
-               <li>
-                  <Link to="/pedidos">Pedidos</Link>
-               </li>
-               <li>
-                  <Link to="/pedidos/novo">Novo pedido</Link>
-               </li>
-            </ul>
-         </aside>
          <main>
             <div className="content">
             <Switch>
